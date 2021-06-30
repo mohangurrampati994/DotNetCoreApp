@@ -10,13 +10,13 @@ FROM mcr.microsoft.com/dotnet/core/sdk:2.1-alpine AS build
 WORKDIR /src
 
 COPY ["DotNetCoreApp.csproj", "DotNetCoreApp/"]
-RUN dotnet restore "DotNetCoreApp.csproj"
+RUN dotnet restore "DotNetCoreApp/DotNetCoreApp.csproj"
 COPY . .
 WORKDIR "/src/DotNetCoreApp"
-RUN dotnet build "DotNetCoreApp.csproj" -c Release -o /app/build
+RUN dotnet build "DotNetCoreApp/DotNetCoreApp.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "DotNetCoreApp.csproj" -c Release -o /app/publish
+RUN dotnet publish "DotNetCoreApp/DotNetCoreApp.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
