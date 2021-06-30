@@ -13,7 +13,7 @@ COPY ["DotNetCoreApp.csproj", "DotNetCoreApp/"]
 RUN dotnet restore "DotNetCoreApp/DotNetCoreApp.csproj"
 COPY . .
 WORKDIR "/src/DotNetCoreApp"
-RUN dotnet build "DotNetCoreApp/DotNetCoreApp.csproj" -c Release -o /app/build
+#RUN dotnet build "DotNetCoreApp/DotNetCoreApp.csproj" -c Release -o /app/build
 
 FROM build AS publish
 RUN dotnet publish "DotNetCoreApp/DotNetCoreApp.csproj" -c Release -o /app/publish
