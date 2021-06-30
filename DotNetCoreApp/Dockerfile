@@ -9,8 +9,8 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/core/sdk:2.1-alpine AS build
 WORKDIR /src
 
-COPY ["DotNetCoreApp/DotNetCoreApp.csproj", "DotNetCoreApp/"]
-RUN dotnet restore "DotNetCoreApp/DotNetCoreApp.csproj"
+COPY ["DotNetCoreApp.csproj", "DotNetCoreApp/"]
+RUN dotnet restore "DotNetCoreApp.csproj"
 COPY . .
 WORKDIR "/src/DotNetCoreApp"
 RUN dotnet build "DotNetCoreApp.csproj" -c Release -o /app/build
